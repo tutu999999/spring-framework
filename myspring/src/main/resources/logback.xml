@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    参考资料: http://my.oschina.net/looly/blog/298675
+    该文章只适用于入门，但未介绍很详细
+-->
+<configuration>
+
+	<!-- appender 的配置表示打印到控制台。 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoder 默认配置为 PatternLayoutEncoder -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+		<file>/logs/yyds.log</file>
+		<encoder><!-- 必须指定，否则不会往文件输出内容 -->
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+		</encoder>
+		<append>true</append>
+		<prudent>false</prudent>
+	</appender>
+
+	<root level="debug">
+		<appender-ref ref="fileAppender" />
+	</root>
+
+</configuration>
