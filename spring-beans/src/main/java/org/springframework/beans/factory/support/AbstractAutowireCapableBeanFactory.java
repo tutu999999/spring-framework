@@ -1197,6 +1197,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				return autowireConstructor(beanName, mbd, null, null);
 			}
 			else {
+				// 实例化bean
 				return instantiateBean(beanName, mbd);
 			}
 		}

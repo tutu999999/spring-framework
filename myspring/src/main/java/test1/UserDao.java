@@ -3,9 +3,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-@Repository
+@Component
 public class UserDao implements BeanFactoryAware, BeanNameAware, InitializingBean, DisposableBean, BeanPostProcessor {
 	private static Logger logger = LoggerFactory.getLogger(UserDao.class);
 
@@ -15,9 +18,14 @@ public class UserDao implements BeanFactoryAware, BeanNameAware, InitializingBea
 		logger.info("userDao{}", "构造方法");
 	}
 
+	@Autowired
+	OrderDao orderDao;
+
+	@Async
 	public void printInfo(){
         System.out.println("user dao");
     }
+
 
 	@Override
 	public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
